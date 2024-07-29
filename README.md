@@ -2,8 +2,7 @@
 
 ## Description
 
->>> Concept = *edit
->>> Ideally
+>>> 
 
   ## Table of Contents 📖
   
