@@ -15,7 +15,6 @@ const getAllThoughts = async (req, res) => {
 
 // Create a new thought
 // Update a thought by ID
-// ?? 
 
 // Get a single thought by ID
 const getSingleThought = async (req, res) => {
@@ -42,7 +41,6 @@ const getSingleThought = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
-
 
 // Update a thought by ID
 const updateThought = async (req, res) => {
@@ -57,10 +55,7 @@ const updateThought = async (req, res) => {
     }
 };
 
-
 /// Need to convert remaining functions plus reset API thoughts in total // 
-/// Need to convert remaining functions plus reset API thoughts in total // 
-
 
 // Update a thought by ID
 const updateThought = async (req, res) => {
@@ -77,7 +72,7 @@ const updateThought = async (req, res) => {
 
 // Delete a thought by ID
 // Create a reaction for a thought
-// Delete a reaction by ID
+// Delete a reaction by ID 
 
 
 
