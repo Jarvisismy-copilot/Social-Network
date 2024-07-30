@@ -58,9 +58,27 @@ const updateThought = async (req, res) => {
 };
 
 
+/// Need to convert remaining functions plus reset API thoughts in total // 
+/// Need to convert remaining functions plus reset API thoughts in total // 
+
+
+// Update a thought by ID
+const updateThought = async (req, res) => {
+    try {
+        const updatedThought = await Thought.findByIdAndUpdate(req.params.thoughtId, req.body, { new: true });
+        if (!updatedThought) {
+            return res.status(404).json({ message: 'Thought not found' });
+        }
+        res.status(200).json(updatedThought);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 // Delete a thought by ID
 // Create a reaction for a thought
 // Delete a reaction by ID
+
 
 
 // Delete a thought by ID
