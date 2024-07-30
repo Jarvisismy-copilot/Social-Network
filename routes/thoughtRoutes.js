@@ -13,3 +13,4 @@ router.route('/')
     .get(getAllThoughts)
     .post(createThought);
 
+    const Thought = require('../models/Thought');
