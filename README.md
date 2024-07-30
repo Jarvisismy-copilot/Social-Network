@@ -2,7 +2,7 @@
 
 ## Description
 
->>> 
+An API for a social network web app, where users can share their thoughts, add friends to their friends list, and react to friends thoughts.
 
   ## Table of Contents 📖
   
@@ -12,40 +12,35 @@
 
   [Links](#Links)
 
-  [Screenshot](#Screenshot)
-
   [Screenrecording](#ScreenRecording)
 
   [License](#license)
 
   [Built-With](#Built-With)
 
-  [Tests](#tests) 
-
   [Credits](#credits)
 
   [Questions](#questions)
   
-  ## Usage 
+## Installation 
 
->>> Edit **
+To install necessary dependencies, run the following command: 
+
+'npm i'
+
+To start the server, run the following command: 
+
+'node server.js'
+
+## Usage 
+
+BaseD structure for a socail network API. 
 
 ## Links
 
->>> Edit **
-[Screen_Recording] (add Google Drive link)
+[Screen_Recording] (Google Drive link)
 
-## Screenshots
-
->>> Edit **
-
-[Screen_Shot.1] (add Screenhot 1.0)
-
-[Screen_Shot.2] (add Screenhot 2.0)
-
->>> If Neccessary... 
-
-______________________________________________________________________________
+____________________________________________________________________________
 
 ## License
 
@@ -54,12 +49,8 @@ ______________________________________________________________________________
   
 ## Built-With
 
->>> - Edit ** 
-
-## Tests 
-
->>> - Edit ** If Necessary... 
-
+- Express.js
+- Mongoose DB
 
 ## Credits 
 
