@@ -34,7 +34,7 @@ To start the server, run the following command:
 
 ## Usage 
 
-BaseD structure for a socail network API. 
+Based structure for a socail network API. 
 
 ## Links
 
@@ -49,6 +49,7 @@ ____________________________________________________________________________
   
 ## Built-With
 
+- Javascript
 - Express.js
 - Mongoose DB
 
