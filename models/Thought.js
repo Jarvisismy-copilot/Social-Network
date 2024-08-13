@@ -1,6 +1,6 @@
 ﻿const { Schema, model, Types } = require("mongoose");
 
-// reaction defiued 
+// reaction defined 
 const reactionSchema = new Schema(
   {
     reactionId: {
