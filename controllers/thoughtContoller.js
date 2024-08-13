@@ -93,11 +93,51 @@ module.exports = {
 
       res.json({ message: "Thought deleted successfully" });
     } catch (err) {
-      res.status(500).json({ error: "Failed to delete thought", details: err });
+      res.status(500).json({ error: "Something went wrong!, Failed to delete thought", details: err });
+    }
+  },
+
+  // Add reaction
+  async createReaction(req, res) {
+    try {
+      const thought = await Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $push: { reactions: req.body } },
+        { new: true, runValidators: true }
+      );
+
+      if (!thought) {
+        return res
+          .status(404)
+          .json({ message: "No thought found with that id" });
+      }
+
+      res.json(thought);
+    } catch (err) {
+      res.status(500).json({ error: "Something went wrong!, Failed to add reaction", details: err });
+    }
+  },
+
+  // Delete reaction
+  async deleteReaction(req, res) {
+    try {
+      const thought = await Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $pull: { reactions: { reactionId: req.params.reactionId } } },
+        { new: true }
+      );
+
+      if (!thought) {
+        return res
+          .status(404)
+          .json({ message: "No thought found with that id" });
+      }
+
+      res.json(thought);
+    } catch (err) {
+      res
+        .status(500)
+        .json({ error: "Something went wrong!, Failed to remove reaction", details: err });
     }
   },
 };
-
-// Add reaction
-
-// Delete reaction
