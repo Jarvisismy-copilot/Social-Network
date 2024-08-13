@@ -93,7 +93,10 @@ module.exports = {
 
       res.json({ message: "Thought deleted successfully" });
     } catch (err) {
-      res.status(500).json({ error: "Something went wrong!, Failed to delete thought", details: err });
+      res.status(500).json({
+        error: "Something went wrong!, Failed to delete thought",
+        details: err,
+      });
     }
   },
 
@@ -114,7 +117,10 @@ module.exports = {
 
       res.json(thought);
     } catch (err) {
-      res.status(500).json({ error: "Something went wrong!, Failed to add reaction", details: err });
+      res.status(500).json({
+        error: "Something went wrong!, Failed to add reaction",
+        details: err,
+      });
     }
   },
 
@@ -135,9 +141,10 @@ module.exports = {
 
       res.json(thought);
     } catch (err) {
-      res
-        .status(500)
-        .json({ error: "Something went wrong!, Failed to remove reaction", details: err });
+      res.status(500).json({
+        error: "Something went wrong!, Failed to remove reaction",
+        details: err,
+      });
     }
   },
 };
