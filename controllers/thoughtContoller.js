@@ -1,90 +1,103 @@
-﻿const Thought = require('../models/Thought');
+﻿const Thought = require("../models/Thought");
+const User = require("../models/User");
 
-
-// Get all thoughts
-const getAllThoughts = async (req, res) => {
+module.exports = {
+  // Get all thoughts
+  async getThoughts(req, res) {
     try {
-        const thoughts = await Thought.find();
-        res.status(200).json(thoughts);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+      const thoughts = await Thought.find();
+      res.json(thoughts);
+    } catch (err) {
+      res.status(500).json({
+        error: "Something went wrong!, Failed to retrieve thoughts",
+        details: err,
+      });
     }
-};
-            // Get all thoughts
-            // Get a single thought by ID
+  },
 
-// Create a new thought
-// Update a thought by ID
-
-// Get a single thought by ID
-const getSingleThought = async (req, res) => {
+  // Get a single thought
+  async getSingleThought(req, res) {
     try {
-        const thought = await Thought.findById(req.params.thoughtId);
-        if (!thought) {
-            return res.status(404).json({ message: 'Thought not found' });
-        }
-        res.status(200).json(thought);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
+      const thought = await Thought.findOne({ _id: req.params.thoughtId });
 
-// Get a single thought by ID
-const getSingleThought = async (req, res) => {
+      if (!thought) {
+        return res
+          .status(404)
+          .json({ message: "Not able to retrieve thought" });
+      }
+
+      res.json(thought);
+    } catch (err) {
+      res.status(500).json({
+        error: "Something went wrong!, Not able to retrieve thought",
+        details: err,
+      });
+    }
+  },
+
+  // Create a thought
+  async createThought(req, res) {
     try {
-        const thought = await Thought.findById(req.params.thoughtId);
-        if (!thought) {
-            return res.status(404).json({ message: 'Thought not found' });
-        }
-        res.status(200).json(thought);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
+      const thought = await Thought.create(req.body);
 
-// Update a thought by ID
-const updateThought = async (req, res) => {
+      await User.findOneAndUpdate(
+        { _id: req.body.userId },
+        { $push: { thoughts: thought._id } },
+        { new: true }
+      );
+
+      res.json(thought);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({
+        error: "Something went wrong!, Thought failed to be created",
+        details: err,
+      });
+    }
+  },
+
+  // Update a thought
+  async updateThought(req, res) {
     try {
-        const updatedThought = await Thought.findByIdAndUpdate(req.params.thoughtId, req.body, { new: true });
-        if (!updatedThought) {
-            return res.status(404).json({ message: 'Thought not found' });
-        }
-        res.status(200).json(updatedThought);
+      const thought = await Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $set: req.body },
+        { runValidators: true, new: true }
+      );
+
+      if (!thought) {
+        return res
+          .status(404)
+          .json({ message: "No thought found with this id" });
+      }
     } catch (error) {
-        res.status(500).json({ message: error.message });
+      res.status(500).json({
+        message: "Something went wrong!, Thought not updated",
+        details: error,
+      });
     }
-};
+  },
 
-/// Need to convert remaining functions plus reset API thoughts in total // 
-
-// Update a thought by ID
-const updateThought = async (req, res) => {
+  // Delete a thought
+  async deleteThought(req, res) {
     try {
-        const updatedThought = await Thought.findByIdAndUpdate(req.params.thoughtId, req.body, { new: true });
-        if (!updatedThought) {
-            return res.status(404).json({ message: 'Thought not found' });
-        }
-        res.status(200).json(updatedThought);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+      const thought = await Thought.findOneAndDelete({
+        _id: req.params.thoughtId,
+      });
+
+      if (!thought) {
+        return res
+          .status(404)
+          .json({ message: "No thought found with that id" });
+      }
+
+      res.json({ message: "Thought deleted successfully" });
+    } catch (err) {
+      res.status(500).json({ error: "Failed to delete thought", details: err });
     }
+  },
 };
 
-// Delete a thought by ID
-// Create a reaction for a thought
-// Delete a reaction by ID 
+// Add reaction
 
-
-
-// Delete a thought by ID
-const deleteThought = async (req, res) => {
-    try {
-        const deletedThought = await Thought.findByIdAndDelete(req.params.thoughtId);
-        if (!deletedThought) {
-            return res.status(404).json({ message: 'Thought not found' });
-        }
-        res.status(200).json({ message: 'Thought deleted' });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
+// Delete reaction
