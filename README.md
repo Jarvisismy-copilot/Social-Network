@@ -1,4 +1,4 @@
-# NoSQL-Social-Network-API# Tech-Blog
+# NoSQL-Social-Network
 
 ## Description
 
@@ -49,9 +49,6 @@ ____________________________________________________________________________
   
 ## Built-With
 
-- Javascript
-- Express.js
-- Mongoose DB
 
 ## Credits 
 
