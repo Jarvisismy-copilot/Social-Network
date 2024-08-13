@@ -93,7 +93,7 @@ module.exports = {
     }
   },
 
-  // Add a friend
+  // Add a Friend
   async addFriend(req, res) {
     try {
       const user = await User.findOneAndUpdate(
